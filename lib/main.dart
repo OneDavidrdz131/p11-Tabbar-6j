@@ -1,42 +1,73 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const Miapptabbar());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
+class Miapptabbar extends StatelessWidget {
+  const Miapptabbar({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
+      debugShowCheckedModeBanner: false,
+      title: "Ejemplo tabbar",
       theme: ThemeData(
-        // useMaterial3: true,
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.blueAccent,
       ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: Mipaginainicial(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
+class Mipaginainicial extends StatefulWidget {
+  const Mipaginainicial({Key? key}) : super(key: key);
 
   @override
+  State<Mipaginainicial> createState() => _MipaginainicialState();
+}
+
+class _MipaginainicialState extends State<Mipaginainicial> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
-        ),
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+            title: Text("tabbar David rodriguez "),
+            bottom: const TabBar(tabs: [
+              Tab(
+                text: "Raptor",
+                icon: Icon(Icons.car_crash),
+              ),
+              Tab(
+                text: "Shelby",
+                icon: Icon(Icons.cable),
+              ),
+              Tab(
+                text: "mustang",
+                icon: Icon(Icons.access_alarm_rounded),
+              ),
+            ] //Texto icono,
+                )),
+        body: TabBarView(children: const <Widget>[
+          Center(
+            child: Text(
+              "Alerta",
+              style: TextStyle(fontStyle: FontStyle.italic, fontSize: 50),
+            ),
+          ),
+          Center(
+            child: Text(
+              "Alerta2",
+              style: TextStyle(fontStyle: FontStyle.italic, fontSize: 50),
+            ),
+          ),
+          Center(
+            child: Text(
+              "Alerta3",
+              style: TextStyle(fontStyle: FontStyle.italic, fontSize: 50),
+            ),
+          ),
+        ]),
       ),
     );
   }
